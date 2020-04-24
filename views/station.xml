@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="first_adoon.station_list">
+            <field name="name">first_adoon list</field>
+            <field name="model">first.adoon.calls</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="first_adoon.station_form">
+            <field name="name">first_adoon list</field>
+            <field name="model">first_adoon.station</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="calls"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="first_adoon.station_action_window">
+            <field name="name">First Adoon Window</field>
+            <field name="res_model">first_adoon.station</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <!-- actions -->
+    <menuitem name="station" id="first_adoon.menu_1__station_list" parent="first_adoon.menu_1"
+              action="first_adoon.station_action_window"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_first_adoon_first_adoon,first_adoon.first_adoon,model_first_adoon_calls,base.group_user,1,1,1,1
+access_first_adoon_station,first_adoon.station,model_first_adoon_station,base.group_user,1,1,1,1
+access_first_adoon_tags,first_adoon.tags,model_first_adoon_tags,base.group_user,1,1,1,1

@@ -1,0 +1,138 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="first_adoon.list">
+      <field name="name">first_adoon list</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="start_time"/>
+          <field name="stop_time"/>
+          <field name="station"/>
+	        <field name="duration" widget="float_time"/>
+          <field name="source"/>
+	        <field name="destination"/>
+          <field name="tags" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="first_adoon.form">
+      <field name="name">first_adoon form</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <form>
+
+          <header>
+            <field name="state" widget="statusbar" options="{'clickable': '1'}" />
+          </header>
+
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="start_time"/>
+              <field name="stop_time"/>
+              <field name="station"/>
+              <field name="duration"/>
+              <field name="source"/>
+              <field name="destination"/>
+              <field name="tags" widget="many2many_tags"/>
+            </group>
+          </sheet>
+
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="first_adoon.graph">
+      <field name="name">first_adoon list</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <graph>
+          <field name="name"/>
+          <field name="start_time"/>
+          <field name="stop_time"/>
+           <field name="duration" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="first_adoon.calendar">
+      <field name="name">first_adoon list</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <calendar string="Session Calendar" date_start="start_time" date_stop="stop_time">
+          <field name="name"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="first_adoon.kanban">
+      <field name="name">first_adoon kanban</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="name"/>
+          <templates>
+            <t t-name="kanban-box" >
+              <div class="oe_kaban_global_click">
+                <strong> <field name="name" /> </strong>
+                <field name="start_time" />
+                <field name="stop_time" />
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="first_adoon.search">
+      <field name="name">first_adoon list</field>
+      <field name="model">first.adoon.calls</field>
+      <field name="arch" type="xml">
+        <search >
+          <field name="name"/>
+          <field name="station"/>
+          <field name="source"/>
+          <field name="destination"/>
+
+          <filter name="current_month" string="Start Time" date="start_time" />
+          <filter name="draft" string="Draft" domain="[('state', '=', 'invoiced')]" />
+          <group string="Group By" >
+            <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
+          </group>
+
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="first_adoon.action_window">
+      <field name="name">firstAdoon window</field>
+      <field name="res_model">first.adoon.calls</field>
+      <field name="view_mode">tree,form,graph,calendar,kanban</field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Call Centre" id="first_adoon.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="first_adoon.menu_1" parent="first_adoon.menu_root"/>
+    <!-- <menuitem name="Menu 2" id="first_adoon.menu_2" parent="first_adoon.menu_root"/> -->
+
+    <!-- actions -->
+
+    <menuitem name="List" id="first_adoon.menu_1_list" parent="first_adoon.menu_1"
+              action="first_adoon.action_window"/>
+    <!-- <menuitem name="Server to list" id="first_adoon" parent="first_adoon.menu_2"
+              action="first_adoon.action_server"/> -->
+
+  </data>
+</odoo>
